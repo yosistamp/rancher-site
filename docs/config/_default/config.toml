@@ -1,0 +1,64 @@
+baseurl                 = "https://www.rancher.jp/site/"
+languageCode            = "ja-jp"
+title                   = "Rancher JP"
+hasCJKLanguage          = true
+copyright               = "© 2018 Rancher JP"
+
+timeZone = 'Asia/Tokyo'
+
+# Multilingual
+defaultContentLanguage = "ja"
+defaultContentLanguageInSubdir = false
+
+theme = "hugo-bootstrap-theme"
+themesdir = "../.."
+
+disableHugoGeneratorInject = true
+enableRobotsTXT = true
+#enableGitInfo = true
+enableEmoji = true
+#sectionPagesMenu = "main"
+#googleAnalytics = "UA-1511XXXX-X"
+
+[permalinks]
+    blog                = "/blog/:year/:month/:day/:slug/"
+    study               = "/study/:slug/"
+    docs                = "/docs/:slug/"
+    translated          = "/translated/:slug/"
+    post                = "/content/:year/:month/:day/:slug/"
+    releasenote         = "/releasenote/:slug/"
+    page                = "/:slug/"
+
+[taxonomies]
+    tag                 = "tags"
+    category            = "categories"
+    archive             = "archives"
+
+[params]
+    author              = "Rancher JP"
+    google_analytics    = "UA-90391346-1"
+    keywords            = ["Rancher", "RancherJP"]
+    description         = "Rancher Japan Community page"
+    noindex             = "noindex"
+    defaultbanner       = "rancherjp.png"
+    twitter_domain      = "www.rancher.jp"
+    twitter_creator     = "@RancherJP"
+    twitter_site        = "@RancherJP"
+
+  [params.Social]
+    twitter             = "https://twitter.com/rancherjp"
+    facebook            = "https://www.facebook.com/rancherjp"
+    slack               = "http://slack.rancher.jp/"
+
+
+[module]
+  [module.hugoVersion]
+    extended = true
+    min = "0.99.1"
+    max = ""
+  [[module.mounts]]
+    source = "assets"
+    target = "assets"
+  [[module.mounts]]
+    source = "static"
+    target = "static"
