@@ -26,8 +26,9 @@
         </div>
     {{ end }}
 
-    {{ if ne .Kind "taxonomy" }}
-
+    {{ if eq .Section "events" }}
+        {{ partial "events.html" . }}
+    {{ else if ne .Kind "taxonomy" }}
         {{ range .Pages }}
         <div class="card border-light-subtle mb-3">
             <div class="row g-0">
@@ -79,7 +80,6 @@
             </div>
         </div>
         {{ end }}
-
     {{ end }}
 
 </div>
