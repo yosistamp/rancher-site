@@ -1,21 +1,9 @@
 {{ range .Pages }}
 <div class="card border-light-subtle mb-3">
     <div class="row g-0">
-        <div class="col-md-4 d-flex align-items-center">
-            {{ if .Params.youtube_url }}
-                <a href="{{ .Params.youtube_url }}" target="_blank" rel="noopener noreferrer">
-                    <img class="img-fluid rounded p-1" src="{{ .Params.youtube_thumbnail }}" loading="lazy" alt="YouTube thumbnail for {{ .Title }}">
-                </a>
-            {{ else if isset .Params "images" }}
-                {{ with .Resources.GetMatch (index .Params.Images 0) }}
-                    {{ $image := .Fill "600x300 Center webp" }}
-                    <img class="img-fluid rounded p-1" src="{{ $image.RelPermalink }}" loading="lazy" width="{{ $image.Width }}" height="{{ $image.Height }}" alt="featured image {{.Title }}">
-                {{ end }}
-            {{ end }}
-        </div>
         <div class="col-md-8">
             <div class="card-body">
-                <h2 class="card-title text-primary">{{ .Title }}</h2>
+                <h2 class="card-title text-primary"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
                 <div class="card-subtitle text-muted mb-3">
                     <svg xmlns="http://www.w3.org/2000/svg" class="feather"><use href="{{ `images/feather/feather-sprite.svg#calendar` | relURL }}"/></svg>
                     <time class="ms-2" datetime="{{ .Date.Format `2006-01-02T15:04:05Z0700` | safeHTML }}">{{ .Date | time.Format ":date_long" }}</time>
@@ -23,12 +11,21 @@
                 <div class="card-text">
                     {{ .Params.description | safeHTML }}
                 </div>
-                {{ if .Params.youtube_url }}
-                    <a class="stretched-link" href="{{ .Params.youtube_url }}" target="_blank" rel="noopener noreferrer"></a>
-                {{ else }}
-                    <a class="stretched-link" href="{{ .RelPermalink }}"></a>
-                {{ end }}
             </div>
+        </div>
+        <div class="col-md-4 d-flex align-items-center">
+            {{ if .Params.youtube_url }}
+                <a href="{{ .Params.youtube_url }}" target="_blank" rel="noopener noreferrer">
+                    <img class="img-fluid rounded p-1" src="{{ .Params.youtube_thumbnail }}" loading="lazy" alt="YouTube thumbnail for {{ .Title }}">
+                </a>
+            {{ else if isset .Params "images" }}
+                <a href="{{ .RelPermalink }}">
+                    {{ with .Resources.GetMatch (index .Params.Images 0) }}
+                        {{ $image := .Fill "600x300 Center webp" }}
+                        <img class="img-fluid rounded p-1" src="{{ $image.RelPermalink }}" loading="lazy" width="{{ $image.Width }}" height="{{ $image.Height }}" alt="featured image {{.Title }}">
+                    {{ end }}
+                </a>
+            {{ end }}
         </div>
     </div>
 </div>
