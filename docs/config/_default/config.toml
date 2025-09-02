@@ -34,22 +34,6 @@ enableEmoji = true
     category            = "categories"
     archive             = "archives"
 
-[params]
-    author              = "Rancher JP"
-    google_analytics    = "UA-90391346-1"
-    keywords            = ["Rancher", "RancherJP"]
-    description         = "Rancher Japan Community page"
-    noindex             = "noindex"
-    defaultbanner       = "rancherjp.png"
-    twitter_domain      = "www.rancher.jp"
-    twitter_creator     = "@RancherJP"
-    twitter_site        = "@RancherJP"
-
-  [params.Social]
-    twitter             = "https://twitter.com/rancherjp"
-    facebook            = "https://www.facebook.com/rancherjp"
-    slack               = "http://slack.rancher.jp/"
-
 
 [module]
   [module.hugoVersion]

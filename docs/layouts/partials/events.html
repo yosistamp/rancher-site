@@ -1,32 +1,82 @@
-{{ range .Pages }}
-<div class="card border-light-subtle mb-3">
-    <div class="row g-0">
-        <div class="col-md-8">
-            <div class="card-body">
-                <h2 class="card-title text-primary"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
-                <div class="card-subtitle text-muted mb-3">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="feather"><use href="{{ `images/feather/feather-sprite.svg#calendar` | relURL }}"/></svg>
-                    <time class="ms-2" datetime="{{ .Date.Format `2006-01-02T15:04:05Z0700` | safeHTML }}">{{ .Date | time.Format ":date_long" }}</time>
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+    {{ range .Pages }}
+            <div class="col">
+
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            <a class="stretched-link text-primary text-decoration-none" href="{{ .RelPermalink }}">
+                                {{ .Title }}
+                            </a>
+                        </h4>
+                        {{ if .Params.youtube_url }}
+                            <a href="{{ .Params.youtube_url }}" target="_blank" rel="noopener noreferrer">
+                                <img class="img-fluid rounded p-2" src="{{ .Params.youtube_thumbnail }}" loading="lazy" alt="YouTube thumbnail for {{ .Title }}">
+                            </a>
+                        {{ else if isset .Params "images" }}
+                            <a href="{{ .RelPermalink }}">
+                                {{ with .Resources.GetMatch (index .Params.Images 0) }}
+                                    {{ $image := .Fill "600x300 Center webp" }}
+                                    <img class="img-fluid rounded p-2" src="{{ $image.RelPermalink }}" loading="lazy" width="{{ $image.Width }}" height="{{ $image.Height }}" alt="featured image {{.Title }}">
+                                {{ end }}
+                            </a>
+                        {{ end }}
+
+                        {{ with .Params.authors }}
+                            <p class="card-subtitle text-muted">
+                                by {{ index . 0 }}
+                            </p>
+                        {{ end }}
+                        <p class="card-text mt-3">
+                            {{ with .Params.description }}
+                                {{ . }}
+                            {{ else }}
+                                {{ .Summary | truncate 200 }}
+                            {{ end }}
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">{{ .Date | time.Format ":date_long" }}</small>
+                    </div>
                 </div>
-                <div class="card-text">
-                    {{ .Params.description | safeHTML }}
-                </div>
+    
             </div>
-        </div>
+    {{ end }}
+</div>
+<!--
+<div class="card border-primary shadow-sm mb-4">
+    <div class="row g-0">
         <div class="col-md-4 d-flex align-items-center">
             {{ if .Params.youtube_url }}
                 <a href="{{ .Params.youtube_url }}" target="_blank" rel="noopener noreferrer">
-                    <img class="img-fluid rounded p-1" src="{{ .Params.youtube_thumbnail }}" loading="lazy" alt="YouTube thumbnail for {{ .Title }}">
+                    <img class="img-fluid rounded p-2" src="{{ .Params.youtube_thumbnail }}" loading="lazy" alt="YouTube thumbnail for {{ .Title }}">
                 </a>
             {{ else if isset .Params "images" }}
                 <a href="{{ .RelPermalink }}">
                     {{ with .Resources.GetMatch (index .Params.Images 0) }}
                         {{ $image := .Fill "600x300 Center webp" }}
-                        <img class="img-fluid rounded p-1" src="{{ $image.RelPermalink }}" loading="lazy" width="{{ $image.Width }}" height="{{ $image.Height }}" alt="featured image {{.Title }}">
+                        <img class="img-fluid rounded p-2" src="{{ $image.RelPermalink }}" loading="lazy" width="{{ $image.Width }}" height="{{ $image.Height }}" alt="featured image {{.Title }}">
                     {{ end }}
                 </a>
             {{ end }}
         </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h2 class="card-title text-primary"><a href="{{ .RelPermalink }}" class="text-decoration-none">{{ .Title }}</a></h2>
+                <div class="card-subtitle text-muted mb-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="feather"><use href="{{ `images/feather/feather-sprite.svg#calendar` | relURL }}"/></svg>
+                    <time class="ms-2" datetime="{{ .Date.Format `2006-01-02T15:04:05Z0700` | safeHTML }}">{{ .Date | time.Format ":date_long" }}</time>
+                </div>
+                <div class="card-text">
+                    {{ with .Params.description }}
+                        {{ . | safeHTML }}
+                    {{ else }}
+                        {{ .Summary | truncate 400 }}
+                    {{ end }}
+                </div>
+                <a class="stretched-link" href="{{ .RelPermalink }}"></a>
+            </div>
+        </div>
     </div>
 </div>
-{{ end }}
+-->

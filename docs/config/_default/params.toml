@@ -1,12 +1,22 @@
 # Site Params
 
+author              = "Rancher JP"
+google_analytics    = "UA-90391346-1"
+keywords            = ["Rancher", "RancherJP"]
+description         = "Rancher Japan Community page"
+noindex             = "noindex"
+defaultbanner       = "rancherjp.png"
+twitter_domain      = "www.rancher.jp"
+twitter_creator     = "@RancherJP"
+twitter_site        = "@RancherJP"
+
 # Open Graph, Twitter Cards and schema.org Thing and Article (in posts)
 # https://gohugo.io/templates/internal/#open-graph
 # https://gohugo.io/templates/internal/#twitter-cards
 # https://schema.org/Thing
 # https://schema.org/Article
-description = "Hugo theme for a secure, blazing fast and SEO-ready static website, using Bootstrap 5."
-images = ['images/rancher.png','images/site-feature-image.png']
+
+images = ['images/rancher.png','images/rancherjp.png', 'images/logo.png']
 mainMenuLogo = "images/rancher.png"
 
 # For favicons
@@ -22,6 +32,11 @@ alertText = "Introducing this new service! <a class=\"alert-link stretched-link\
 footerAbout = true
 footerAboutTitle = "Few Words About Us"
 footerAboutText = "We protect your website so you can provide a safe environment to build trust and improve the user experience of your visitors.<br/><br/>Salvus Site is the partner that you can rely on for preventive and reactive cybersecurity."
+
+[Social]
+  twitter             = "https://twitter.com/rancherjp"
+  facebook            = "https://www.facebook.com/rancherjp"
+  slack               = "http://slack.rancher.jp/"
 
 [options]
   bootStrapJs = true
