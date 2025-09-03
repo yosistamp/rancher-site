@@ -17,7 +17,7 @@ twitter_site        = "@RancherJP"
 # https://schema.org/Article
 
 images = ['images/rancher.png','images/rancherjp.png', 'images/logo.png']
-mainMenuLogo = "images/rancher.png"
+mainMenuLogo = "images/rancherjp.png"
 
 # For favicons
 ## Chrome Browser
@@ -37,6 +37,7 @@ footerAboutText = "We protect your website so you can provide a safe environment
   twitter             = "https://twitter.com/rancherjp"
   facebook            = "https://www.facebook.com/rancherjp"
   slack               = "http://slack.rancher.jp/"
+  youtuble            = "https://www.youtube.com/@rancherjp3004"
 
 [options]
   bootStrapJs = true
