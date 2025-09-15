@@ -1,169 +1,130 @@
-# Hugo Bootstrap Theme
+# Rancher JP Site Project
 
-[![Build and Deploy to gh-pages branch](https://github.com/filipecarneiro/hugo-bootstrap-theme/actions/workflows/gh-pages.yml/badge.svg)](https://github.com/filipecarneiro/hugo-bootstrap-theme/actions/workflows/gh-pages.yml) [![Publish to GitHub Pages](https://github.com/filipecarneiro/hugo-bootstrap-theme/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/filipecarneiro/hugo-bootstrap-theme/actions/workflows/pages/pages-build-deployment)
+## ローカル実行
 
-Theme for a blazing fast static website and/or blog using bootstrap 5.
+hugo v0.148 or later
 
-![Screenshot](https://github.com/filipecarneiro/hugo-bootstrap-theme/blob/main/images/tn.png)
+### モジュールインストール
 
-## Demo
-
-- [https://filipecarneiro.github.io/hugo-bootstrap-theme/](https://filipecarneiro.github.io/hugo-bootstrap-theme/)
-
-## Features
-
-- 🛡️ Security aware
-  
-  Get A+ scores on Mozilla Observatory out of the box. Easily change the default Security Headers to suit your needs.
-
-- ⚡Fast by default
-  
-  Get 100 scores on Google Lighthouse by default. Hugo Bootstrap Theme removes unused css, prefetches links, and lazy loads images.
-  
-- 📈 SEO-ready
-  
-  Use sensible defaults for structured data, open graph, and Twitter cards. Or easily change the Search Engine Optimization settings to your liking.
-
-## Framework
-
-### Hugo
-
-Hugo is the **world’s fastest static website engine**. It’s written in Go (aka Golang).
-
-- [Hugo Documentation](https://gohugo.io/documentation/)
-
-- [Go template documentation](https://golang.org/pkg/text/template/#hdr-Functions)
-
-### Bootstrap
-
-Get started with Bootstrap
-
-- [Bootstrap 5.3](https://getbootstrap.com/docs/5.3/getting-started/introduction/)
-
-- [Install Bootstrap in your Node.js powered apps with the npm package](https://getbootstrap.com/docs/5.3/getting-started/download/#npm)
-
-### Requirements
-
-The tools used are cross-platform and should work on Windows, MacOS and Linux. You will need the following tools to be downloaded and installed:
-
-- [Hugo static site builder](https://github.com/goHugoio/Hugo/releases) - IMPORTANT: make sure you pick the extended version, Hugo_extended_0.xx.x_…
-
-- [Node & NPM](https://nodejs.org/) - We use this to maintain project dependencies
-
-- [Git](https://git-scm.com/downloads) - This is optional, but highly recommended for version control and remote backups.
-
-## Usage
-
-### Test the theme locally on your computer
-
-Clone this repo:
-
-```
-git clone https://github.com/filipecarneiro/hugo-bootstrap-theme.git
-```
-
-Test if the site is working:
-
-```
-hugo server -D --disableFastRender --source exampleSite
-```
-
-This launches Hugo development server and you can see the example site by opening http://localhost:1313/hugo-bootstrap-theme/.
-
-You can also use Hugo as an installed NPM local package. In this case, you don't need to install Hugo globally:
-
-```
+```bash
 npm install
-npm run start
+cd ../
 ```
 
-This will install Hugo in a `bin` subfolder and then run it, using the NPM package `exec-bin`.
+※ npm intall は bun install でも可
 
-### Install on an existing Hugo site
-
-#### Step 1: Install via NPM
-
-```
-npm install @filipecarneiro/hugo-bootstrap-theme
+```bash
+hugo server -D --disableFastRender --gc --cleanDestinationDir
 ```
 
-Hugo bootstrap theme package will also add bootstrap and feather-icons to node modules.
+## スライドの追加
 
-#### Step 2: Add to Config
+SlideShare、Docswellにアップロードされたスライドは下記手順でコンテンツに追加してください。
 
-Then add the theme `hugo-bootstrap-theme` to your sites [configuration file](https://gohugo.io/getting-started/configuration/#configuration-file) `config.toml`, `config.yaml` or `config.json`:
+### スライド一覧に追加
 
-```toml
-theme = "hugo-bootstrap-theme"
-themesdir = "node_modules/@filipecarneiro"
+以下ファイルを作成すると自動でスライド一覧に追加されます。
+
+#### ファイルを作成
+
+```bash
+docs/content/slide/<YYYYMMDD>/<スライド名>.md
 ```
 
-The new themes directory (themesdir) is needed to get the new theme from the `node_modules` folder.
-
-#### Step 3: Test your site
+#### ファイル内のフロントマターに日付、タイトル、スライドのURLを指定
 
 ```
-hugo server -D --disableFastRender
+---
+date: "2025-08-26"
+title: "サポートエンジニアから見たRancher運用の現場"
+slug: "slide"
+slide_url: "https://speakerdeck.com/player/795d4990babf44bfb6c35e7c44d43980?slide=1"
+---
 ```
 
-#### Step 4: Check your parameters
+SlideのURL配下の手順で取得
 
-Check your `copyright` variable, your menus (the theme supports `main`, `footer` and `social` menus), etc.
+- Docswell
+  - スライドページを開く
+  - 右下の埋め込むの書かれたコードのdata-srcに書かれたURLを取得
+- SlideShare
+  - スライドページを開く
+  - スライド右下の共有リンクボタンを押下
+  - Embed、This slideを選択し、「copy iframe embed code」を押下
+  - コピーしたURLをテキストエディタなどに張り付け、srcに書かれたURLを取得
 
-Have a look on exampleSite for inspiration :)
+## イベントページ追加
 
-### Start from Scratch
+### ファイルを作成
 
-#### Step 1: Create a new Hugo site
-
-Follow [Hugo Quick Start](https://gohugo.io/getting-started/quick-start/) to create a new site, add a sample page and change basic settings.
-
-Since you've created an Git repository, let's specify some Hugo files and folders to ignore.
-
-Create a `.gitignore` file on the root of your project with this content:
-
-```txt
-public
-node_modules
-resources
-.hugo_build.lock
+```bash
+docs/content/events/<YYYYMMDD>_meetup.md
 ```
 
-Optionally, add a remote repository and push your code.
-
-#### Step 2: Install and configure Hugo Bootstrap Theme
-
-Update npm to the latest version:
+### ファイル内のフロントマターに日付、タイトル、説明文、Youtubeおよびサムネイル画像のURLを指定
 
 ```
-npm install -g npm
+---
+title: "RancherJP Online Meetup #07"
+date: 2025-08-28T14:00:00Z
+draft: false
+description: "今回の RancherJP Online Meetup #07 は 「Rancher v2.12 リリース情報 + Rancherの仕組み」と「Rancher Prime の現場から見る運用 Tips」の２テーマをじっくり掘り下げます。"
+youtube_url: "https://www.youtube.com/embed/I4kfajUDXK8?i=__LwhvWOVmfMvhey" 
+thumbnail: "http://img.youtube.com/vi/I4kfajUDXK8/mqdefault.jpg"
+---
 ```
 
-If you don't have npm, [download and install Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm).
+### 本文作成
 
-Then, create an npm package for your site:
+マークダウンで本文の作成をします。
 
-```
-npm init -y
-```
+#### スライドの埋め込み
 
-If wanted, you can customize your package information, editing the generated `package.json` file.
+importmd でパスを指定することでスライドの埋め込みが可能です。
 
-Now, install Hugo Bootstrap Theme:
-
-```
-npm install @filipecarneiro/hugo-bootstrap-theme --save-dev
+```bash
+{{< importmd path="slide/20250826/rancher_support.md" >}}
 ```
 
-Then add the theme `hugo-bootstrap-theme` to your site configuration file `config.toml`:
+#### Youtubeの埋め込み
 
-```toml
-theme = 'hugo-bootstrap-theme'
-themesdir = 'node_modules/@filipecarneiro'
+フロントマターにyoutube_urlを指定しておくと本文下部にYoutubeが埋め込まれます。
+
+## トップ画面に最新情報の表示
+
+### ファイルを作成
+
+```bash
+post/<YYYYMMDD>_<任意の名前>/index.md
 ```
 
-Change the existing `theme` value from `ananke` to `hugo-bootstrap-theme` and add a new line for `themesdir`, like above.
+### フロントマター
 
-Add some [configuration](https://gohugo.io/getting-started/configuration/), like `copyright`, `description` and your menus (the theme supports `main`, `footer` and `social` menus).
+title、date、authorsなどを入力
 
-Have a look on exampleSite for inspiration :)
+```markdown
+---
+title: "RancherJP Online Meetup"
+date: 2025-08-26
+draft: false
+categories: ["event"]
+tags: ["event","meetup"]
+keywords: ["RancherJP Online Meetup"]
+authors: ["Katsuhiro Yamanaka"]
+---
+```
+
+### 本文作成
+
+マークダウンで本文の作成をします。
+
+### サムネイル画像
+
+マークダウンの本文の最初に下記のように画像リンクを埋め込むことでトップ画面にサムネイル画像が表示されます。（詳細ページの最初にも画像表示されます。）
+
+```markdown
+![meetup](meetup.png)
+{ .img-fluid .mb-5}
+```
+
+画像はindex.mdと同じ場所に配置しておく
